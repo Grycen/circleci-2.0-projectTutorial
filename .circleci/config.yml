@@ -13,6 +13,8 @@ jobs:
           POSTGRES_PASSWORD: ""
     steps:
       - checkout
+      - restore_cache:
+          key: deps1-{{ .Branch }}-{{ checksum "requirements/dev.txt" }}
       - run:
           name: Override environment variable
           command: echo ${FLASK_CONFIG}
